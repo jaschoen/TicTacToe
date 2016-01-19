@@ -15,6 +15,7 @@ class Game
 
 #======================Needs Specs=============================
   def start_game
+    # Input user options and set up game
     ui.welcome
     first_to_act   = ui.who_goes_first
     player_token   = ui.player_token
@@ -27,7 +28,8 @@ class Game
 
     # Set initial player and opponent based on user input
     first_to_act == "1" ? (player, opponent = human, computer) : (player, opponent = computer, human)
-
+    
+    # Run the game
     while true
       # prompt move, move, print board
       ui.turn(player)
