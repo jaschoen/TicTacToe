@@ -24,24 +24,20 @@ class Game
     @computer = Minmax.new("O", @ui, player_token, opponent_token)
   
     ui.print_board(board)
-    if first_to_act == 1
-      player, opponent = human, computer 
-    else
-      player, opponent = computer, human
-    end
+
+    # Set initial player and opponent based on user input
+    first_to_act == "1" ? (player, opponent = human, computer) : (player, opponent = computer, human)
 
     while true
-
+      # prompt move, move, print board
       ui.turn(player)
       player.move(board)
       ui.print_board(board)
-
+      # If game is over, print result and exit
       ui.won(player) if board.winner
       ui.tie if board.tie?
-
+      # if game isn't over, switch players
       player, opponent = opponent, player
-
-    # game_running
     end
   end
 
