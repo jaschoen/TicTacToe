@@ -20,8 +20,8 @@ class Game
     player_token   = ui.player_token
     opponent_token = ui.computer_token
     
-    @human    = Human.new("X", @ui, player_token, opponent_token)
-    @computer = Minmax.new("O", @ui, player_token, opponent_token)
+    @human    = Human.new(@ui, player_token, opponent_token)
+    @computer = Minmax.new(@ui, player_token, opponent_token)
   
     ui.print_board(board)
 

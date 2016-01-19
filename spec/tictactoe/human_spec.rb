@@ -4,21 +4,7 @@ describe Human do
 	
 	let(:board) {Board.new}
 	let(:ui)    {Console.new}
-	let(:human) {Human.new('X', ui, "J", "S")}
-
-	describe '#move(board)' do 
-		# board.spaces[0] = 'X'
-		it 'should prompt user for input' do 
-			pending 'how do I check a chomp statement?'
-			expect {human.move}.to output("Where would you like to move?\n").to_stdout
-		end
-		# it 'should place the piece on the board' do 
-			# pending 'how do I fake input?' 
-			# allow(die).to receive(:roll) { 3 }
-			# human.move(board)
-			# expect(board.spaces[0]).to eql('X')
-		# end 
-	end
+	let(:human) {Human.new(ui, "J", "S")}
 
 	describe '#valid_input?' do 
 		it 'should return false if input is empty' do 

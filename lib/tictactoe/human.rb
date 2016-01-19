@@ -1,10 +1,12 @@
 class Human
-	 attr_reader :piece, :ui, :player_token, :opponent_token
+	 attr_reader :ui, :player_token, :opponent_token
 
-  def initialize(piece, ui, player_token, opponent_token)
-    @piece, @ui, @player_token, @opponent_token = piece, ui, player_token, opponent_token
+  def initialize(ui, player_token, opponent_token)
+    @ui             = ui
+    @player_token   = player_token
+    @opponent_token = opponent_token
   end
-
+  # boolean validation check
   def valid_input?(input, board)
   	return true if (input.nil? == false && 
   									input =~ /\d/ &&
@@ -12,17 +14,14 @@ class Human
   	false
   end
 #=======================Needs Specs=====================================
+  # Get move, validate, place it on board
   def move(board)
   	check = false
   	until check
   		input = ui.get_move
-  		if valid_input?(input, board)
-  			check = true 
-  		else 
-  			ui.invalid_input
-  		end
+      valid_input?(input, board) ? check = true : ui.invalid_input
   	end
-    	board.place_piece(input.to_i, piece)
+    	board.place_piece(input.to_i, player_token)
   end
   
 end
