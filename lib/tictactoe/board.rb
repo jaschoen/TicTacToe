@@ -32,12 +32,6 @@ class Board
 		end
 		open
 	end
-
-
-
-
-
-# =======================Needs Specs====================================
 	# Return winning combo if are all the same, and not nil, else return false
 	def winning_combo
 		combo = TICTACTOE_WINS.each do |combo|
@@ -48,15 +42,19 @@ class Board
 		end
 		false
 	end
-	# If there is a winning combination, 
+	# If there is a winning combination, return the piece of the winner if not return false
 	def winner
 		combo = winning_combo
 		combo ? spaces[combo[0]] : false
 	end
-
+	# returns true if game is all spaces have been played and no winner
 	def tie?
-		available_spaces.empty?
+		available_spaces.empty? && !winner
 	end
+
+
+# =======================Needs Specs====================================
+
 
   def initialize_dup(other)
     super(other)
