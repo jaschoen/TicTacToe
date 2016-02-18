@@ -2,15 +2,18 @@ require_relative 'board'
 require_relative 'console'
 require_relative 'human'
 require_relative 'minmax'
+require_relative 'rules'
+
 
 
 
 class Game
-  attr_accessor :board, :human, :computer, :ui, :player_token, :opponent_token
+  attr_accessor :board, :human, :computer, :ui, :player_token, :opponent_token, :rules
 
   def initialize
     @board = Board.new
     @ui    = Console.new
+    @rules = Rules.new
   end
 
 #======================Needs Specs=============================
@@ -22,7 +25,7 @@ class Game
     opponent_token = ui.computer_token
     
     @human    = Human.new(@ui, player_token, opponent_token)
-    @computer = Minmax.new(@ui, player_token, opponent_token)
+    @computer = Minmax.new(@ui, player_token, opponent_token, rules)
   
     ui.print_board(board)
 
@@ -36,8 +39,8 @@ class Game
       player.move(board)
       ui.print_board(board)
       # If game is over, print result and exit
-      ui.won(player) if board.winner
-      ui.tie if board.tie?
+      ui.won(player) if rules.winner(board)
+      ui.tie if rules.tie?(board)
       # if game isn't over, switch players
       player, opponent = opponent, player
     end

@@ -4,15 +4,16 @@ require_relative 'board'
 
 class Minmax
 
-	attr_reader :best_choice, :ui, :player_token, :opponent_token
+	attr_reader :best_choice, :ui, :player_token, :opponent_token, :rules
 
 
 
 #========================Needs Specs=======================================
-  def initialize(ui, opponent_token, player_token)
+  def initialize(ui, opponent_token, player_token, rules)
     @ui             = ui
     @player_token   = player_token
     @opponent_token = opponent_token
+    @rules          = rules
   end
 
   # Get best move and place piece
@@ -38,7 +39,8 @@ class Minmax
 	end
 	# Checks if game is over
 	def game_over?(board)
-		board.winner || board.tie?
+		# board.winner || board.tie?
+    rules.winner(board) || rules.tie?(board)
 	end
 	# Takes current piece, scores hash, returns min or max value depending on who's turn it is
   def best_move(piece, scores)
@@ -50,9 +52,9 @@ class Minmax
   end
   # Final score, 10 for win, -10 for loss, 0 for tie
   def score(board)
-    if board.winner == player_token
+    if rules.winner(board) == player_token
       return 10
-    elsif board.winner == @opponent_token
+    elsif rules.winner(board) == @opponent_token
       return -10
     end
     0
