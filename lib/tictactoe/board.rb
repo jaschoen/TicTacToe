@@ -35,7 +35,7 @@ class Board
 	# Return winning combo if are all the same, and not nil, else return false
 	def winning_combo
 		combo = TICTACTOE_WINS.each do |combo|
-			if spaces[combo[0]] == spaces[combo[1]] &&
+			if spaces[combo[0]] == spaces[combo[1]] && 
 				 spaces[combo[1]] == spaces[combo[2]]
 				 return combo unless spaces[combo[0]].nil?
 			end
