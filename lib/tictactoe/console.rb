@@ -10,19 +10,45 @@ class Console
 	# Convert open board spaces to array, print to STDOUT resulting formatted board
 	def print_board(board)
 		formatted_board = []
-		(0..(Rules.size**2-1)).each do |space|
+		size = Rules.size
+		(0..(size**2-1)).each do |space|
 			if board.spaces[space].nil?
 				formatted_board << space 
 			else
 				formatted_board << board.spaces[space]
 			end
 		end
-		puts " #{formatted_board[0]} | #{formatted_board[1]} | #{formatted_board[2] } "
-		puts "==========="
-		puts " #{formatted_board[3]} | #{formatted_board[4]} | #{formatted_board[5] } "
-		puts "==========="
-		puts " #{formatted_board[6]} | #{formatted_board[7]} | #{formatted_board[8] } "
+		# puts " #{formatted_board[0]} | #{formatted_board[1]} | #{formatted_board[2] } "
+		# puts "==========="
+		# puts " #{formatted_board[3]} | #{formatted_board[4]} | #{formatted_board[5] } "
+		# puts "==========="
+		# puts " #{formatted_board[6]} | #{formatted_board[7]} | #{formatted_board[8] } "
+
+		string_board = ""
+		i = 0
+		(size**2).times do 
+			string_board << " #{formatted_board[i]} "
+			if i == 0
+				string_board << "|"
+				i +=1
+				next
+			elsif i + 1 == size**2
+				next					
+			elsif (i+1) % size == 0 
+			 string_board << "\n" + "===="*(size-1)+"===" + "\n" 
+			 i +=1
+			else
+			 string_board << "|"
+			 i += 1
+			end
+			
+		end
+		puts string_board
 	end
+
+
+
+
 	# Print who's turn it is
 	def turn(player)	
 		puts "\nPlayer's turn\n" if player.instance_of? Human
