@@ -11,9 +11,9 @@ class Game
   attr_accessor :board, :human, :computer, :ui, :player_token, :opponent_token, :rules
 
   def initialize
-    @board = Board.new
     @ui    = Console.new
     @rules = Rules.new
+    @board = Board.new(Rules.size)
   end
 
 #======================Needs Specs=============================

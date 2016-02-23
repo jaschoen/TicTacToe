@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Board do 
-	let(:board) { Board.new }
+	let(:board) { Board.new(3) }
 
 	describe '#place_piece' do 
 		it 'places an X into first space' do 

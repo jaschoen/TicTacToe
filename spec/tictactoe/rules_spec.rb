@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Rules do 
   let(:rules) { Rules.new }
-  let(:board) { Board.new }
+  let(:board) { Board.new(3) }
 
   describe '#winning_combo(board)' do
        TICTACTOE_WINS = [

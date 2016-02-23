@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Human do 
 	
-	let(:board) {Board.new}
+	let(:board) {Board.new(3)}
 	let(:ui)    {Console.new}
 	let(:human) {Human.new(ui, "J", "S")}
 

@@ -10,7 +10,7 @@ class Console
 	# Convert open board spaces to array, print to STDOUT resulting formatted board
 	def print_board(board)
 		formatted_board = []
-		(0..8).each do |space|
+		(0..(Rules.size**2-1)).each do |space|
 			if board.spaces[space].nil?
 				formatted_board << space 
 			else

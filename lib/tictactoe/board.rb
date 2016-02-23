@@ -1,9 +1,10 @@
 class Board
-	attr_accessor :spaces
+	attr_accessor :spaces, :size
   
   # Initialize with empty array
-	def initialize
-		@spaces = Array.new(9)
+	def initialize(size)
+		@spaces = Array.new(size**2)
+		@size   = size
 	end
 	# Place piece on board
 	def place_piece(space, piece)
@@ -15,12 +16,12 @@ class Board
 	end
 	# Check if move is valid
 	def valid_move?(space)
-		(0..8).include?(space) && space_available?(space) 
+		(0..(size**2-1)).include?(space) && space_available?(space) 
 	end
 	# return array of available spaces
 	def available_spaces
 		open = []
-		(0..8).each do |space|
+		(0..(size**2-1)).each do |space|
 			open << space if space_available?(space)
 		end
 		open

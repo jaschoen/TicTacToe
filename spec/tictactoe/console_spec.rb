@@ -16,7 +16,7 @@ describe Console do
 	end
 
 	describe '#print_board' do 
-		let(:board) { Board.new }
+		let(:board) { Board.new(3) }
 
 		context 'when board is empty' do
 			it 'prints a blank board' do 

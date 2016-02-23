@@ -1,7 +1,6 @@
 class Rules
 
-
- TICTACTOE_WINS = [
+  TICTACTOE_WINS = [
     # Horizontal wins:
     [0, 1, 2], [3, 4, 5], [6, 7, 8],
     # Vertical wins:
@@ -9,6 +8,29 @@ class Rules
     # Diagonal wins:
     [0, 4, 8], [2, 4, 6]
   ]
+  
+
+  # def possible_wins(size)
+  #   horizontal_wins_array = []
+  #   all_hoz_wins = []
+  #   size.times do |i|
+  #     (((i-1)*size)..(i*(size-i))).each do |n|
+  #       horizontal_wins_array << n
+  #     end
+  #     all_hoz_wins << horizontal_wins_array
+  #   end
+  #   all_hoz_wins
+  # end
+
+
+
+    # 0*size..1*size -1
+    # 1xsize..2*size -1
+    # 2xsize..3*size -1
+
+  def self.size
+    3
+  end
 
   # Return winning combo if are all the same, and not nil, else return false
   def winning_combo(board)
