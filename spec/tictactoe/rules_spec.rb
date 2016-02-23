@@ -43,7 +43,10 @@ describe Rules do
       expect(rules.tie?(board)).to be_falsy
     end
   end
-  #================fiddling with these now==========================
-
+  describe '#self.size' do
+    it 'returns size of board, 3' do 
+      expect(Rules.size).to eq(3)
+    end
+  end
 
 end
