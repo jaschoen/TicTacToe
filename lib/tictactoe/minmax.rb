@@ -22,38 +22,6 @@ class Minmax
     piece == player_token ? opponent_token : player_token
   end
 
-
-#========================Needs Specs=======================================
-
-	# This is the tricky part
-	def minmax(board, current_player)
-		# If the game is over, return the highest score
-		return score(board) if game_over?(board)
-		# Hash to hold scores of possible moves
-		scores = {}
-		# Duplicate board, place piece in each space, set scores hash to next level of min max
-		board.available_spaces.each do |space|
-			potential_board = board.dup
-			potential_board.place_piece(space, current_player)
-			scores[space] = minmax(potential_board, switch(current_player))
-		end
-
-		@best_choice, best_score = best_move(current_player, scores)
-    # puts "best_score:" 
-    # p best_score
-    best_score
-	end
-
-
-	# Takes current piece, scores hash, returns min or max value depending on who's turn it is
-  def best_move(piece, scores)
-    if piece == @player_token
-      scores.max_by { |key, value| value }
-    else
-      scores.min_by { |key, value| value }
-    end
-  end
-  # Final score, 10 for win, -10 for loss, 0 for tie
   def score(board)
     if rules.winner(board) == player_token
       return 10
@@ -62,5 +30,29 @@ class Minmax
     end
     0
   end
+
+  def best_move(piece, scores)
+    if piece == @player_token
+      scores.max_by { |key, value| value }
+    else
+      scores.min_by { |key, value| value }
+    end
+  end
+
+
+	def minmax(board, current_player)
+		return score(board) if game_over?(board)
+		scores = {}
+		board.available_spaces.each do |space|
+			potential_board = board.dup
+			potential_board.place_piece(space, current_player)
+			scores[space] = minmax(potential_board, switch(current_player))
+		end
+
+		@best_choice, best_score = best_move(current_player, scores)
+
+    best_score
+	end
+
 
 end

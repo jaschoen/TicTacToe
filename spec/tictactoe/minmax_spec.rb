@@ -55,17 +55,39 @@ describe Minmax do
 
   describe '#score(board)' do 
     it 'returns 10 on player winning move' do 
+      board.spaces = ['X', 'X', 'O', 
+                      'O', 'O', 'X',
+                      'O', 'X', 'O']
+      expect(computer.score(board)).to eq(10)
+    end
+    it 'returns -10 on comouter winning move' do 
+      board.spaces = ['X', 'X', 'X', 
+                      'O', 'O', 'X',
+                      'O', 'X', 'O']
+      expect(computer.score(board)).to eq(-10)
+    end
+    it 'returns 0 on tie board' do 
+      board.spaces = ['X', 'O', 'X', 
+                      'O', 'O', 'X',
+                      'O', 'X', 'O']
+      expect(computer.score(board)).to eq(0)
+    end
+  end
 
-      # expect(score(board)).to eq(10)
+  describe '#best_move(piece, scores)' do 
+    it 'returns max score for player_token' do 
+      piece = 'O'
+      @player_token = 'X'
+      scores = {1=>10, 2=>-10, 3=>10, 4=>10, 6=>10}
+      expect(computer.best_move(piece, scores)).to eq([1, 10])
+    end
+    it 'returns min score for opponent_token' do 
+      piece = 'X'
+      @player_token = 'X'
+      scores = {1=>10, 2=>-10, 3=>10, 4=>10, 6=>10}
+      expect(computer.best_move(piece, scores)).to eq([2, -10])
     end
   end
 
 
 end
-
-
-
-      # allow_any_instance_of(Kernel).to receive(:gets).and_return('XX', 'X')
-      # allow(console).to receive(:invalid_input)
-      # console.get_token
-      # expect(console).to have_received(:invalid_input)
