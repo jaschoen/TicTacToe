@@ -2,7 +2,6 @@ class Minmax
 
 	attr_reader :best_choice, :ui, :player_token, :opponent_token, :rules
 
-#========================Needs Specs=======================================
   def initialize(ui, opponent_token, player_token, rules)
     @ui             = ui
     @player_token   = player_token
@@ -10,11 +9,22 @@ class Minmax
     @rules          = rules
   end
 
-  # Get best move and place piece
-	def move(board)
-		minmax(board, player_token)
-		board.place_piece(best_choice, player_token)
-	end
+  def move(board)
+    minmax(board, player_token)
+    board.place_piece(best_choice, player_token)
+  end
+
+  def game_over?(board)
+    rules.winner(board) || rules.tie?(board)
+  end
+
+  def switch(piece)
+    piece == player_token ? opponent_token : player_token
+  end
+
+
+#========================Needs Specs=======================================
+
 	# This is the tricky part
 	def minmax(board, current_player)
 		# If the game is over, return the highest score
@@ -29,13 +39,12 @@ class Minmax
 		end
 
 		@best_choice, best_score = best_move(current_player, scores)
-		best_score
+    # puts "best_score:" 
+    # p best_score
+    best_score
 	end
-	# Checks if game is over
-	def game_over?(board)
-		# board.winner || board.tie?
-    rules.winner(board) || rules.tie?(board)
-	end
+
+
 	# Takes current piece, scores hash, returns min or max value depending on who's turn it is
   def best_move(piece, scores)
     if piece == @player_token
@@ -53,8 +62,5 @@ class Minmax
     end
     0
   end
-  #switches active player token
-	def switch(piece)
-		piece == player_token ? opponent_token : player_token
-	end
+
 end

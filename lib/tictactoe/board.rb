@@ -26,14 +26,8 @@ class Board
 		open
 	end
 
-
-
-# =======================Needs Specs====================================
-
-
-  def initialize_dup(other)
-    super(other)
-    @spaces = other.spaces.dup
+  def initialize_dup(board)
+    @spaces = board.spaces.dup
   end
 
 end

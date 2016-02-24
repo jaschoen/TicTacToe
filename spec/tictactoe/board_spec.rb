@@ -41,6 +41,15 @@ describe Board do
 			expect(board.available_spaces).to eql([4, 5, 6, 7, 8])
 		end
 	end
+
+	describe '#initialize_dup(board)' do 
+		it 'duplicates spaces as well when board is duped' do 
+			board.spaces = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+			new_board = board.dup
+			expect(new_board.spaces).to eq([0, 1, 2, 3, 4, 5, 6, 7, 8])
+		end
+	end
+
 	
 
 

@@ -13,7 +13,6 @@ class Game
     @board = Board.new(Rules.size)
   end
 
-#======================Needs Specs=============================
   def start_game
     ui.welcome
     ui.prompt_who_goes_first
