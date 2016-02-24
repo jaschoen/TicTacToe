@@ -42,7 +42,6 @@ describe Board do
 		end
 	end
 	
-	#================fiddling with these now==========================
 
 
 end

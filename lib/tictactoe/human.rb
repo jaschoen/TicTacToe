@@ -6,13 +6,14 @@ class Human
     @player_token   = player_token
     @opponent_token = opponent_token
   end
-  # boolean validation check
+
   def valid_input?(input, board)
   	return true if (input.nil? == false && 
   									input =~ /\d/ &&
   									board.valid_move?(input.to_i))
   	false
   end
+  
 #=======================Needs Specs=====================================
   # Get move, validate, place it on board
   def move(board)

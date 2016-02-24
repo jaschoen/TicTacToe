@@ -1,12 +1,6 @@
-require_relative 'board'
-# require_relative 'player'
-
-
 class Minmax
 
 	attr_reader :best_choice, :ui, :player_token, :opponent_token, :rules
-
-
 
 #========================Needs Specs=======================================
   def initialize(ui, opponent_token, player_token, rules)

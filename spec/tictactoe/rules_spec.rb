@@ -6,11 +6,8 @@ describe Rules do
 
   describe '#winning_combo(board)' do
        TICTACTOE_WINS = [
-      # Horizontal wins:
       [0, 1, 2], [3, 4, 5], [6, 7, 8],
-      # Vertical wins:
       [0, 3, 6], [1, 4, 7], [2, 5, 8],
-      # Diagonal wins:
       [0, 4, 8], [2, 4, 6]
       ]
     it 'returns the winning combination if there is one' do 
@@ -33,8 +30,6 @@ describe Rules do
   end
   describe '#tie' do 
     it 'returns true if all spaces full' do 
-      # since winning combo is checked first in execution, 
-      # it just needs to return a tie when the board is full
       allow(board).to receive(:available_spaces) {[]}
       expect(rules.tie?(board)).to be_truthy
     end
