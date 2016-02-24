@@ -14,8 +14,6 @@ class Human
   	false
   end
   
-#=======================Needs Specs=====================================
-  # Get move, validate, place it on board
   def move(board)
   	check = false
   	until check

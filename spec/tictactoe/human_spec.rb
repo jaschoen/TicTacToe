@@ -23,5 +23,22 @@ describe Human do
 		end
 	end
 
+	describe '#move(board)' do 
+		it 'places validpiece on board' do 
+			allow_any_instance_of(Kernel).to receive(:gets).and_return('2')
+			board.spaces = ['J', 'S', nil, nil, nil, nil, nil, 'J', 'S']
+			new_board    = ['J', 'S', 'J', nil, nil, nil, nil, 'J', 'S']
+			human.move(board)
+			expect(board.spaces).to eq(new_board)
+		end
+		it 'rejects an invalid move' do 
+			allow_any_instance_of(Kernel).to receive(:gets).and_return('1', '2')
+			allow(ui).to receive(:invalid_input)
+			board.spaces = ['J', 'S', nil, nil, nil, nil, nil, 'J', 'S']
+			human.move(board)
+			expect(ui).to have_received(:invalid_input)
+		end
+	end
+
 
 end
